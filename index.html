@@ -4,144 +4,448 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="1qbE1gfFWqdJsUT8T-9b3B5MC9vhGx3XPqcdZSINZE4" />
-    <title>Ivan Oliveira — Cloud Solution Architect</title>
+    <title>Ivan Oliveira — Senior Cloud Solution Architect</title>
+    <meta name="description" content="Ivan Oliveira — Senior Cloud Solution Architect at Microsoft. 20+ years of SharePoint expertise, Microsoft 365, AI, Power Platform, .NET.">
     <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #1c2128;
+            --border: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.15);
+            --green: #3fb950;
+            --purple: #a371f7;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--text-primary); }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .nav-links { display: flex; gap: 0.3rem; }
+        .nav-links a {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--text-primary); background: var(--bg-secondary); }
+        .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* SECTIONS */
+        section {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 3rem 1.5rem;
+            justify-content: center;
+            padding: 6rem 2rem;
         }
-        a { color: #58a6ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .container { max-width: 800px; width: 100%; }
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #21262d;
+        .section-content {
+            max-width: 900px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #30363d;
-        }
-        .profile-info h1 {
-            font-size: 1.8rem;
-            color: #f0f6fc;
-            margin-bottom: 0.3rem;
-        }
-        .profile-info .role {
-            color: #8b949e;
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-        }
-        .profile-info .bio {
-            color: #c9d1d9;
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .section-content.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .section-title {
-            font-size: 1.2rem;
-            color: #f0f6fc;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #21262d;
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border);
+            display: inline-block;
         }
-        .repos {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% 0%, rgba(88, 166, 255, 0.08) 0%, transparent 60%);
         }
-        .repo-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 1.2rem 1.5rem;
-            transition: border-color 0.2s;
-        }
-        .repo-card:hover { border-color: #58a6ff; }
-        .repo-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
-        .repo-card p { color: #8b949e; font-size: 0.9rem; margin-bottom: 0.6rem; }
-        .repo-meta { display: flex; gap: 1.2rem; font-size: 0.8rem; color: #8b949e; }
-        .repo-meta span { display: flex; align-items: center; gap: 0.3rem; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .dot-cs { background: #178600; }
-        .dot-ps { background: #012456; }
-        .dot-html { background: #e34c26; }
-        .expertise {
+        .hero-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 2.5rem;
+            align-items: center;
+            gap: 3rem;
+        }
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            box-shadow: 0 0 40px rgba(88, 166, 255, 0.1);
+            flex-shrink: 0;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.5px;
+        }
+        .hero-text .role {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .hero-text .bio {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 550px;
+        }
+        .hero-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .hero-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* EXPERTISE */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.8rem;
         }
         .tag {
-            background: #1f2937;
-            border: 1px solid #30363d;
-            border-radius: 20px;
-            padding: 0.4rem 0.9rem;
-            font-size: 0.8rem;
-            color: #c9d1d9;
-        }
-        footer {
-            margin-top: auto;
-            padding-top: 2rem;
-            color: #484f58;
-            font-size: 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.7rem 1.1rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
             text-align: center;
+            transition: all 0.2s;
         }
+        .tag:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .tag-highlight {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* CERTIFICATIONS */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 0.8rem;
+        }
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            transition: border-color 0.2s;
+        }
+        .cert-item:hover { border-color: var(--green); }
+        .cert-icon {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* PROJECTS */
+        .repo-card {
+            display: block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+        .repo-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        .repo-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .repo-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .repo-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .repo-meta span { display: flex; align-items: center; gap: 0.4rem; }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-cs { background: #178600; }
+
+        /* FOOTER */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-links { justify-content: center; }
+            .avatar { width: 120px; height: 120px; }
+            section { padding: 5rem 1.2rem; min-height: auto; }
+            .nav-links a { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+            .cert-grid { grid-template-columns: 1fr; }
+        }
+
+        /* HAMBURGER (mobile) */
+        .nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
         @media (max-width: 600px) {
-            .profile { flex-direction: column; text-align: center; }
-            .avatar { width: 100px; height: 100px; }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .nav-links.open { display: flex; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="profile">
-            <img class="avatar" src="https://avatars.githubusercontent.com/u/19307465?v=4" alt="Ivan Oliveira">
-            <div class="profile-info">
-                <h1>Ivan Oliveira</h1>
-                <p class="role">Senior Cloud Solution Architect @ Microsoft</p>
-                <p class="bio">Focused on Microsoft 365 &amp; SharePoint — storage optimization, governance, and tenant-scale automation. Building open-source tools to help organizations reduce cloud storage costs.</p>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <span class="nav-brand">Ivan Oliveira</span>
+            <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+            <div class="nav-links">
+                <a href="#hero" class="active">Home</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#projects">Projects</a>
             </div>
         </div>
+    </nav>
 
-        <h2 class="section-title">Expertise</h2>
-        <div class="expertise">
-            <span class="tag">SharePoint Online</span>
-            <span class="tag">Microsoft 365</span>
-            <span class="tag">PowerShell</span>
-            <span class="tag">Storage Optimization</span>
-            <span class="tag">Governance</span>
-            <span class="tag">Azure</span>
-            <span class="tag">Tenant Administration</span>
-            <span class="tag">.NET</span>
+    <section id="hero">
+        <div class="section-content visible">
+            <div class="hero-content">
+                <img class="avatar" src="https://avatars.githubusercontent.com/u/19307465?v=4" alt="Ivan Oliveira">
+                <div class="hero-text">
+                    <h1>Ivan Oliveira</h1>
+                    <p class="role">Senior Cloud Solution Architect @ Microsoft</p>
+                    <p class="bio">20+ years of SharePoint expertise — from on-premises (2001) through SharePoint Online. Specialized in infrastructure, development, governance, storage optimization, and tenant-scale automation across the entire Microsoft 365 ecosystem. Building open-source tools to help organizations reduce cloud storage costs.</p>
+                    <div class="hero-links">
+                        <a href="https://www.linkedin.com/in/ivanoliv" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/ivanoliv" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <h2 class="section-title">Open Source Projects</h2>
-        <div class="repos">
-            <a href="https://ivanoliv.github.io/SPOVersionManagement/" class="repo-card">
-                <h3>SPOVersionManagement</h3>
-                <p>Free PowerShell tool to manage SharePoint Online file versions, reduce storage costs, and enforce version governance at scale.</p>
+    <section id="expertise">
+        <div class="section-content">
+            <h2 class="section-title">Expertise</h2>
+            <div class="expertise-grid">
+                <div class="tag tag-highlight">SharePoint (since 2001)</div>
+                <div class="tag tag-highlight">Microsoft 365</div>
+                <div class="tag">AI</div>
+                <div class="tag">Power Platform</div>
+                <div class="tag">.NET</div>
+                <div class="tag">PowerShell</div>
+                <div class="tag">Azure</div>
+                <div class="tag">Office 365 Governance</div>
+                <div class="tag">Storage Optimization</div>
+                <div class="tag">Infrastructure</div>
+                <div class="tag">On-Premises &amp; Online</div>
+                <div class="tag">Tenant Administration</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="section-content">
+            <h2 class="section-title">Microsoft Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-item"><span class="cert-icon"></span> Azure AI Fundamentals</div>
+                <div class="cert-item"><span class="cert-icon"></span> Power Platform App Maker Associate</div>
+                <div class="cert-item"><span class="cert-icon"></span> Microsoft 365 Teamwork Administrator Associate</div>
+                <div class="cert-item"><span class="cert-icon"></span> Implementing Azure Infrastructure Solutions</div>
+                <div class="cert-item"><span class="cert-icon"></span> MCT (Microsoft Certified Trainer)</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2010 — Configuration</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2010 — Administration</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2010 — Development</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2010 — Application Development</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2007 — Configuration</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint 2007 — Application Development</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint Services 3.0 — Configuration</div>
+                <div class="cert-item"><span class="cert-icon"></span> SharePoint Services 3.0 — Application Development</div>
+                <div class="cert-item"><span class="cert-icon"></span> SQL Server 2005</div>
+                <div class="cert-item"><span class="cert-icon"></span> Microsoft .NET</div>
+                <div class="cert-item"><span class="cert-icon"></span> Microsoft Certified Professional</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-content">
+            <h2 class="section-title">Open Source Projects</h2>
+            <a href="https://ivanoliv.github.io/SPOVersionManagement/" class="repo-card" target="_blank" rel="noopener">
+                <h3>SPO Version Management</h3>
+                <p>Free PowerShell tool to manage SharePoint Online file versions, reduce storage costs, and enforce version governance at scale. Used by organizations worldwide to reclaim terabytes of SharePoint storage.</p>
                 <div class="repo-meta">
                     <span><span class="dot dot-cs"></span> C# / PowerShell</span>
-                    <span>&#9733; 1</span>
+                    <span>&#9733; Open Source</span>
                 </div>
             </a>
         </div>
+    </section>
 
-        <footer>
-            <p><a href="https://github.com/ivanoliv">github.com/ivanoliv</a></p>
-        </footer>
-    </div>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/ivanoliv" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/ivanoliv" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p>&copy; 2026 Ivan Oliveira</p>
+    </footer>
+
+    <script>
+        // Scroll spy — highlight active nav link
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const navbar = document.getElementById('navbar');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-60px 0px 0px 0px' });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Reveal sections on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-content').forEach(el => revealObserver.observe(el));
+
+        // Nav shadow on scroll
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile toggle
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
+        });
+    </script>
 </body>
 </html>
