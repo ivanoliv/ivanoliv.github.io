@@ -2,11 +2,146 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="1qbE1gfFWqdJsUT8T-9b3B5MC9vhGx3XPqcdZSINZE4" />
-    <title>Ivan Oliveira - GitHub Pages</title>
+    <title>Ivan Oliveira — Cloud Solution Architect</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1.5rem;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 800px; width: 100%; }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #21262d;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #30363d;
+        }
+        .profile-info h1 {
+            font-size: 1.8rem;
+            color: #f0f6fc;
+            margin-bottom: 0.3rem;
+        }
+        .profile-info .role {
+            color: #8b949e;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .profile-info .bio {
+            color: #c9d1d9;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #21262d;
+        }
+        .repos {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .repo-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            transition: border-color 0.2s;
+        }
+        .repo-card:hover { border-color: #58a6ff; }
+        .repo-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .repo-card p { color: #8b949e; font-size: 0.9rem; margin-bottom: 0.6rem; }
+        .repo-meta { display: flex; gap: 1.2rem; font-size: 0.8rem; color: #8b949e; }
+        .repo-meta span { display: flex; align-items: center; gap: 0.3rem; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot-cs { background: #178600; }
+        .dot-ps { background: #012456; }
+        .dot-html { background: #e34c26; }
+        .expertise {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+        }
+        .tag {
+            background: #1f2937;
+            border: 1px solid #30363d;
+            border-radius: 20px;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.8rem;
+            color: #c9d1d9;
+        }
+        footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            color: #484f58;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .profile { flex-direction: column; text-align: center; }
+            .avatar { width: 100px; height: 100px; }
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting...</p>
-    <script>window.location.href = '/SPOVersionManagement/';</script>
+    <div class="container">
+        <div class="profile">
+            <img class="avatar" src="https://avatars.githubusercontent.com/u/19307465?v=4" alt="Ivan Oliveira">
+            <div class="profile-info">
+                <h1>Ivan Oliveira</h1>
+                <p class="role">Senior Cloud Solution Architect @ Microsoft</p>
+                <p class="bio">Focused on Microsoft 365 &amp; SharePoint — storage optimization, governance, and tenant-scale automation. Building open-source tools to help organizations reduce cloud storage costs.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Expertise</h2>
+        <div class="expertise">
+            <span class="tag">SharePoint Online</span>
+            <span class="tag">Microsoft 365</span>
+            <span class="tag">PowerShell</span>
+            <span class="tag">Storage Optimization</span>
+            <span class="tag">Governance</span>
+            <span class="tag">Azure</span>
+            <span class="tag">Tenant Administration</span>
+            <span class="tag">.NET</span>
+        </div>
+
+        <h2 class="section-title">Open Source Projects</h2>
+        <div class="repos">
+            <a href="https://ivanoliv.github.io/SPOVersionManagement/" class="repo-card">
+                <h3>SPOVersionManagement</h3>
+                <p>Free PowerShell tool to manage SharePoint Online file versions, reduce storage costs, and enforce version governance at scale.</p>
+                <div class="repo-meta">
+                    <span><span class="dot dot-cs"></span> C# / PowerShell</span>
+                    <span>&#9733; 1</span>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <p><a href="https://github.com/ivanoliv">github.com/ivanoliv</a></p>
+        </footer>
+    </div>
 </body>
 </html>
